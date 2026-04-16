@@ -9,8 +9,9 @@ sdkconfig.old
 .claude/
 
 # Managed components (baixados automaticamente pelo IDF Component Manager)
+# O dependencies.lock é commitado para garantir builds reproduzíveis
+managed_components/
 main/managed_components/
-dependencies.lock
 
 # OS
 .DS_Store
