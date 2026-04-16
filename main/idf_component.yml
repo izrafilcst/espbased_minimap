@@ -1,0 +1,24 @@
+## IDF Component Manager — MeshTracker
+## Managed components para ESP-IDF via PlatformIO
+
+version: "1.0.0"
+
+dependencies:
+  ## LVGL 9.x — UI toolkit
+  lvgl/lvgl:
+    version: ">=9.1.0 <10.0.0"
+    rules:
+      - if: "idf_version >=5.0"
+
+  ## Display driver ESP-LCD ILI9341
+  espressif/esp_lcd_ili9341:
+    version: ">=1.2.0"
+    rules:
+      - if: "idf_version >=5.0"
+
+  ## esp_timer já incluso no ESP-IDF — não precisa listar
+  ## esp_mac já incluso no ESP-IDF — não precisa listar
+
+  ## Componente base do ESP-IDF (mínimo v5.1 para S3 com PSRAM OCT)
+  idf:
+    version: ">=5.1.0"

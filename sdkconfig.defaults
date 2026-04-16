@@ -1,0 +1,135 @@
+# MeshTracker — sdkconfig.defaults
+# ESP32-S3 N16R8 (16MB Flash, 8MB PSRAM Octal)
+# Gerado para ESP-IDF via PlatformIO
+
+# ─── CPU ─────────────────────────────────────────────────────────────────────
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_MHZ=240
+
+# ─── Flash ───────────────────────────────────────────────────────────────────
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="16MB"
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+CONFIG_ESPTOOLPY_FLASHFREQ="80m"
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHMODE="qio"
+
+# ─── PSRAM Octal 80MHz ───────────────────────────────────────────────────────
+CONFIG_ESP32S3_SPIRAM_SUPPORT=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_BOOT_INIT=y
+CONFIG_SPIRAM_IGNORE_NOTFOUND=n
+CONFIG_SPIRAM_USE_CAPS_ALLOC=y
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=16384
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+CONFIG_SPIRAM_ALLOW_BSS_SEG_EXTERNAL_MEMORY=y
+CONFIG_SPIRAM_ALLOW_NOINIT_SEG_EXTERNAL_MEMORY=y
+
+# ─── Cache ───────────────────────────────────────────────────────────────────
+CONFIG_ESP32S3_DATA_CACHE_SIZE_64KB=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+CONFIG_ESP32S3_INSTRUCTION_CACHE_SIZE_32KB=y
+
+# ─── FreeRTOS ────────────────────────────────────────────────────────────────
+CONFIG_FREERTOS_HZ=1000
+CONFIG_FREERTOS_UNICORE=n
+CONFIG_FREERTOS_USE_TRACE_FACILITY=y
+CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y
+CONFIG_FREERTOS_TASK_FUNCTION_WRAPPER=y
+
+# ─── SPI Master ISR in IRAM ──────────────────────────────────────────────────
+CONFIG_SPI_MASTER_ISR_IN_IRAM=y
+CONFIG_SPI_MASTER_IN_IRAM=y
+
+# ─── UART ISR in IRAM ────────────────────────────────────────────────────────
+CONFIG_UART_ISR_IN_IRAM=y
+
+# ─── GPIO ISR ────────────────────────────────────────────────────────────────
+CONFIG_GPIO_CTRL_FUNC_IN_IRAM=y
+
+# ─── Log ─────────────────────────────────────────────────────────────────────
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_DEFAULT_LEVEL=3
+CONFIG_LOG_MAXIMUM_LEVEL=4
+
+# ─── LVGL (via managed component) ────────────────────────────────────────────
+CONFIG_LV_COLOR_DEPTH_16=y
+CONFIG_LV_COLOR_16_SWAP=y
+CONFIG_LV_MEM_SIZE_KILOBYTES=512
+CONFIG_LV_USE_GPU_ESP_DMA2D=n
+
+# Fonts Montserrat
+CONFIG_LV_FONT_MONTSERRAT_10=y
+CONFIG_LV_FONT_MONTSERRAT_12=y
+CONFIG_LV_FONT_MONTSERRAT_14=y
+CONFIG_LV_FONT_MONTSERRAT_16=y
+CONFIG_LV_FONT_MONTSERRAT_18=y
+CONFIG_LV_FONT_MONTSERRAT_20=y
+CONFIG_LV_FONT_DEFAULT_MONTSERRAT_14=y
+
+# LVGL features
+CONFIG_LV_USE_LABEL=y
+CONFIG_LV_USE_BTN=y
+CONFIG_LV_USE_LIST=y
+CONFIG_LV_USE_TABLE=y
+CONFIG_LV_USE_ARC=y
+CONFIG_LV_USE_LINE=y
+CONFIG_LV_USE_IMG=y
+CONFIG_LV_USE_CANVAS=y
+CONFIG_LV_USE_ROLLER=y
+CONFIG_LV_USE_DROPDOWN=y
+CONFIG_LV_USE_CHART=y
+CONFIG_LV_USE_METER=y
+CONFIG_LV_USE_MSGBOX=y
+CONFIG_LV_USE_SPINNER=y
+CONFIG_LV_USE_ANIMATION=y
+CONFIG_LV_USE_THEME_DEFAULT=y
+
+# LVGL display refresh
+CONFIG_LV_DISP_DEF_REFR_PERIOD=16
+CONFIG_LV_INDEV_DEF_READ_PERIOD=30
+
+# ─── Stack & Heap ─────────────────────────────────────────────────────────────
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+CONFIG_ESP_MAIN_TASK_AFFINITY_CPU0=y
+
+# ─── Partition table ─────────────────────────────────────────────────────────
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# ─── NVS ─────────────────────────────────────────────────────────────────────
+CONFIG_NVS_ENCRYPTION=n
+
+# ─── Coredump ────────────────────────────────────────────────────────────────
+CONFIG_ESP_COREDUMP_ENABLE_TO_FLASH=y
+CONFIG_ESP_COREDUMP_DATA_FORMAT_ELF=y
+CONFIG_ESP_COREDUMP_CHECKSUM_CRC32=y
+
+# ─── WiFi (disabled — não usamos) ───────────────────────────────────────────
+CONFIG_ESP32_WIFI_ENABLED=n
+
+# ─── Bluetooth (disabled) ────────────────────────────────────────────────────
+CONFIG_BT_ENABLED=n
+
+# ─── LCD / Display ───────────────────────────────────────────────────────────
+# Projeto usa ILI9341 via SPI — desabilitar RGB panel evita ICE no GCC Xtensa
+CONFIG_LCD_RGB_ISR_IRAM_SAFE=n
+CONFIG_ESP_LCD_ENABLE_DEBUG_LOG=n
+
+# ─── Compiler optimization ────────────────────────────────────────────────────
+# -Og evita ICE (Segfault RTL pass: ira) do GCC 14.2 Xtensa.
+# CONFIG_COMPILER_OPTIMIZATION_SIZE  usa -Os  → ainda dispara o bug
+# CONFIG_COMPILER_OPTIMIZATION_DEFAULT usa -Og → pula as passes problemáticas
+CONFIG_COMPILER_OPTIMIZATION_DEFAULT=y
+CONFIG_COMPILER_OPTIMIZATION_ASSERTION_LEVEL=2
+
+# ─── Watchdog ────────────────────────────────────────────────────────────────
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=y
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=y
+
+# ─── Newlib (printf float support) ───────────────────────────────────────────
+CONFIG_NEWLIB_STDOUT_LINE_ENDING_CRLF=y
+CONFIG_NEWLIB_NANO_FORMAT=n
