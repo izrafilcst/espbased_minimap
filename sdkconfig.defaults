@@ -57,7 +57,7 @@ CONFIG_LOG_MAXIMUM_LEVEL=4
 # ─── LVGL (via managed component) ────────────────────────────────────────────
 CONFIG_LV_COLOR_DEPTH_16=y
 CONFIG_LV_COLOR_16_SWAP=y
-CONFIG_LV_MEM_SIZE_KILOBYTES=512
+CONFIG_LV_MEM_SIZE_KILOBYTES=64
 CONFIG_LV_USE_GPU_ESP_DMA2D=n
 
 # Fonts Montserrat

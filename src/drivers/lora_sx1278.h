@@ -18,6 +18,10 @@
 #include "esp_err.h"
 #include "meshtracker_config.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* ─── Callback types ─────────────────────────────────────────────────────── */
 
 /** Callback chamado pela ISR quando um pacote é recebido. */
@@ -84,5 +88,9 @@ bool lora_is_transmitting(void);
  * @return ESP_OK em sucesso.
  */
 esp_err_t lora_reset(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* LORA_SX1278_H */
